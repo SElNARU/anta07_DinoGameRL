@@ -1,9 +1,12 @@
 //import Phaser from "phaser";
 
 
+
+import {SpriteWithDynamicBody} from "./types";
+
 class PlayScene extends Phaser.Scene {
 
-    player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    player: SpriteWithDynamicBody;
 
     get gameHeight(){
        return this.game.config.height as number;
@@ -22,6 +25,9 @@ class PlayScene extends Phaser.Scene {
 
     createPlayer() {
         this.player = this.physics.add.sprite(0, this.gameHeight, "dino-player").setOrigin(0,1);
+
+        this.player.setGravityY(300);
+        this.player.setCollideWorldBounds(true); //colider, diky kteremu s gravitaci neprochazi texturou
     }
 
     createEnvironment() {
